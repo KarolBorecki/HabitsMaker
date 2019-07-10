@@ -11,6 +11,7 @@ import 'NewHabit.dart';
 
 class User {
   DateTime time = DateTime.now();
+  DateTime lastSaving;
 
   List<Habit> habits;
 
@@ -25,6 +26,8 @@ class User {
     saveFile.writeAsString('');
     for (int i = 0; i < this.habits.length; i++)
       saveHabit(this.habits[i], file: saveFile);
+    saveFile.writeAsStringSync(
+        DateTime.now().toString(), mode: FileMode.append);
   }
 
   void saveHabit(Habit habit, {File file}) async {
@@ -43,13 +46,14 @@ class User {
   }
 
   void loadHabits() async {
-    habits.clear();
     final file = await _saveFile;
     if (file.existsSync()) {
+      habits.clear();
       String contents = file.readAsStringSync();
       List<String> content = contents.split('\n');
 
-      for (int i = 0; i < content.length - 1; i += 7) {
+      //Decrease length by 2 because I have lastSaving value at the end of the file
+      for (int i = 0; i < content.length - 2; i += 7) {
         List<String> sList =
         content[i + 6].substring(1, content[i + 6].length - 1).split(', ');
         habits.add(new Habit(
@@ -68,7 +72,22 @@ class User {
             .
             length, (i) => int.parse(sList[i])),
         ));
-  }
+    }
+    lastSaving
+    =
+    DateTime
+        .
+    parse
+    (
+    content
+    [
+    content
+        .
+    length
+    -
+    1
+    ]
+    );
     }
   }
 
