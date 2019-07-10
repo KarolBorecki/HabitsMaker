@@ -83,14 +83,14 @@ class Habit {
 
   Color color;
   String icon;
-  var weekdays = [];
+  List<int> weekdays = [];
 
   Habit(this.name, this.time, this.streak, this.isDone, this.color, this.icon,
       this.weekdays);
 }
 
 class HabitsList extends StatefulWidget {
-  var weekDay;
+  int weekDay;
 
   HabitsList(this.weekDay);
 
@@ -101,7 +101,7 @@ class HabitsList extends StatefulWidget {
 // TODO There is an idea - read about list title
 
 class _HabitsListState extends State<HabitsList> {
-  var weekDay;
+  int weekDay;
 
   _HabitsListState(this.weekDay);
 
@@ -131,7 +131,7 @@ class _HabitsListState extends State<HabitsList> {
                   child: Stack(
                     children: <Widget>[
                       // Here is this child
-                      HabitListElement(minMargin, habit),
+                      HabitListElement(habit),
                       Container(
                         height: minMargin * 40,
                         decoration: BoxDecoration(
@@ -173,7 +173,7 @@ class _HabitsListState extends State<HabitsList> {
 
   //TODO Delete this horryfing vars OMFG
   List<dynamic> getHabits(var weekDay) {
-    var finalHabits = [];
+    List<Habit> finalHabits = [];
     user.habits.forEach((element) {
       if (element.weekdays.contains(weekDay) && !element.isDone)
         finalHabits.add(element);
@@ -188,21 +188,19 @@ class _HabitsListState extends State<HabitsList> {
 }
 
 class HabitsOptionsList extends StatefulWidget {
-  var _minMargin;
   var weekDay;
 
-  HabitsOptionsList(this._minMargin, this.weekDay);
+  HabitsOptionsList(this.weekDay);
 
   @override
   _HabitsOptionsListState createState() =>
-      _HabitsOptionsListState(_minMargin, weekDay);
+      _HabitsOptionsListState(weekDay);
 }
 
 class _HabitsOptionsListState extends State<HabitsOptionsList> {
-  var _minMargin;
-  var weekDay;
+  int weekDay;
 
-  _HabitsOptionsListState(this._minMargin, this.weekDay);
+  _HabitsOptionsListState(this.weekDay);
 
   @override
   Widget build(BuildContext context) {
@@ -212,24 +210,24 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
         children: getHabits(weekDay).map<Padding>((habit) {
           if (habit == null)
             return Padding(
-              padding: EdgeInsets.only(top: _minMargin * 10),
+              padding: EdgeInsets.only(top: minMargin * 10),
               child: Container(
                   alignment: Alignment.center,
                   child: Text(
                     "No habits!",
                     style: TextStyle(
                       color: Colors.white30,
-                      fontSize: _minMargin * 10,
+                      fontSize: minMargin * 10,
                     ),
                   )),
             );
           return Padding(
-            padding: EdgeInsets.only(top: _minMargin * 10),
+            padding: EdgeInsets.only(top: minMargin * 10),
             child: Slidable(
               delegate: SlidableDrawerDelegate(),
               actionExtentRatio: 0.25,
               // Here is child
-              child: HabitListElement(_minMargin, habit),
+              child: HabitListElement(habit),
               secondaryActions: <Widget>[
                 IconSlideAction(
                   caption: 'Delete',
@@ -270,7 +268,7 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
   }
 
   List<dynamic> getHabits(var weekDay) {
-    var finalHabits = [];
+    List<Habit> finalHabits = [];
     user.habits.forEach((element) {
       if (element.weekdays.contains(weekDay)) finalHabits.add(element);
     });
@@ -284,15 +282,14 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
 }
 
 class HabitListElement extends StatelessWidget {
-  var _minMargin;
   Habit habit;
 
-  HabitListElement(this._minMargin, this.habit);
+  HabitListElement(this.habit);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _minMargin * 40,
+      height: minMargin * 40,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(80.0),
           color: Theme.of(context).primaryColor),
@@ -304,14 +301,14 @@ class HabitListElement extends StatelessWidget {
                 color: habit.color.withOpacity(0.8)),
             child: IconButton(
               icon:
-                  Text(habit.icon, style: TextStyle(fontSize: _minMargin * 15)),
+              Text(habit.icon, style: TextStyle(fontSize: minMargin * 15)),
               color: habit.color.withOpacity(0.6),
-              iconSize: _minMargin * 40,
+              iconSize: minMargin * 40,
               onPressed: () {},
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: _minMargin * 5),
+            margin: EdgeInsets.only(left: minMargin * 5),
             child: Text(
               //TODO problem - too long name = overfolowed error
               habit.name,
@@ -320,7 +317,7 @@ class HabitListElement extends StatelessWidget {
           ),
           Expanded(child: const Text("")),
           Container(
-            margin: EdgeInsets.only(right: _minMargin * 5),
+            margin: EdgeInsets.only(right: minMargin * 5),
             child: Text(
               DateFormat('kk:mm').format(habit.time),
               style: Theme.of(context).textTheme.body2,

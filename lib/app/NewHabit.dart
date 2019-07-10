@@ -9,10 +9,10 @@ import '../globals.dart';
 import 'Home.dart';
 
 class NewHabit extends StatefulWidget {
-  var name;
-  var icon;
+  String name;
+  String icon;
   DateTime time;
-  var weekDaysOfHabit;
+  List<int> weekDaysOfHabit;
   Color color;
 
   NewHabit({this.name = "", this.icon = "👌🏼", time, weekDaysOfHabit, color})
@@ -29,10 +29,10 @@ class NewHabit extends StatefulWidget {
 class _NewHabitState extends State<NewHabit> {
   final _formKey = new GlobalKey<FormState>();
 
-  var name;
-  var icon;
+  String name;
+  String icon;
   DateTime time;
-  var weekDaysOfHabit;
+  List<int> weekDaysOfHabit;
 
   Color color;
 
@@ -203,8 +203,8 @@ class CheckBox extends StatefulWidget {
   bool isChecked;
 
   Widget child;
-  var width;
-  var value;
+  double width;
+  int value;
 
   Function(int val) onCheck;
 
@@ -219,8 +219,8 @@ class _CheckBoxState extends State<CheckBox> {
   bool isChecked;
 
   Widget child;
-  var width;
-  var value;
+  double width;
+  int value;
 
   Function(int val) onCheck;
 
@@ -249,7 +249,7 @@ class _CheckBoxState extends State<CheckBox> {
 }
 
 class TimePicker extends StatefulWidget {
-  var time;
+  DateTime time;
 
   Function(DateTime time) onTimeChange;
 
@@ -261,7 +261,7 @@ class TimePicker extends StatefulWidget {
 }
 
 class _TimePickerState extends State<TimePicker> {
-  var time;
+  DateTime time;
 
   Function(DateTime time) onTimeChange;
 

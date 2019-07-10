@@ -48,7 +48,7 @@ class AllHabits extends StatelessWidget {
           Container(
               height: minMargin * 250,
               margin: EdgeInsets.only(top: minMargin * 10),
-              child: HabitsOptionsList(minMargin, weekDay)),
+              child: HabitsOptionsList(weekDay)),
           Expanded(child: const Text("")),
           Container(
             height: minMargin * 25,
