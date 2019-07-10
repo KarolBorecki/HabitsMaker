@@ -28,7 +28,6 @@ class User {
   }
 
   void saveHabit(Habit habit, {File file}) async {
-    //TODO Check if this is working
     file = (file == null) ? await _saveFile : file;
     file.writeAsStringSync(habit.name + "\n", mode: FileMode.append);
     file.writeAsStringSync(habit.time.toString() + "\n", mode: FileMode.append);
@@ -45,7 +44,6 @@ class User {
 
   void loadHabits() async {
     habits.clear();
-    print(habits);
     final file = await _saveFile;
     String contents = file.readAsStringSync();
     List<String> content = contents.split('\n');
@@ -156,7 +154,7 @@ class _HabitsListState extends State<HabitsList> {
                                     iconSize: minMargin * 40,
                                     onPressed: () {},
                                   ),
-                                  Expanded(child: Text(""))
+                                  Expanded(child: const Text(""))
                                 ],
                               )),
                           onDismissed: (direction) {
@@ -227,8 +225,8 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
             );
           return Padding(
             padding: EdgeInsets.only(top: _minMargin * 10),
-            child: new Slidable(
-              delegate: new SlidableDrawerDelegate(),
+            child: Slidable(
+              delegate: SlidableDrawerDelegate(),
               actionExtentRatio: 0.25,
               // Here is child
               child: HabitListElement(_minMargin, habit),
@@ -320,7 +318,7 @@ class HabitListElement extends StatelessWidget {
               style: Theme.of(context).textTheme.body2,
             ),
           ),
-          Expanded(child: Text("")),
+          Expanded(child: const Text("")),
           Container(
             margin: EdgeInsets.only(right: _minMargin * 5),
             child: Text(

@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
       margin: EdgeInsets.all(minMargin * 5),
       child: Column(
         children: <Widget>[
-          Expanded(child: Text("")),
+          Expanded(child: const Text("")),
           Container(
               margin: EdgeInsets.all(minMargin * 5),
               child: Row(
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
                 ],
               )),
           Container(height: minMargin * 250, child: HabitsList(weekDay)),
-          Expanded(child: Text("")),
+          Expanded(child: const Text("")),
           Container(
             margin: EdgeInsets.only(bottom: minMargin * 5),
             child: Row(
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
-                Expanded(child: Text("")),
+                Expanded(child: const Text("")),
                 Container(
                   child: IconButton(
                     icon: Icon(Icons.settings),

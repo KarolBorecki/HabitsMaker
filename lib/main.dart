@@ -7,14 +7,12 @@ import 'globals.dart';
 
 void main() => runApp(App());
 
-
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-
   @override
   void initState() {
     super.initState();
@@ -31,20 +29,15 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     setState(() {
-      if (state == AppLifecycleState.paused)
-        user.saveHabits();
+      if (state == AppLifecycleState.paused) user.saveHabits();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Main()
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Main());
   }
 }
-
 
 class Main extends StatelessWidget {
   @override
@@ -66,16 +59,12 @@ class Main extends StatelessWidget {
                   color: Colors.white,
                   fontSize: minMargin * 30,
                   fontFamily: "Mainfont",
-                  fontWeight: FontWeight.w900
-
-              ),
+                  fontWeight: FontWeight.w900),
               display2: TextStyle(
                   color: Colors.white,
                   fontSize: minMargin * 24,
                   fontFamily: "Mainfont",
-                  fontWeight: FontWeight.w900
-
-              ),
+                  fontWeight: FontWeight.w900),
               display3: TextStyle(
                 color: Colors.white,
                 fontSize: minMargin * 9,
@@ -90,13 +79,11 @@ class Main extends StatelessWidget {
                 fontSize: minMargin * 11,
                 fontFamily: "MainFont",
               ),
-
               button: TextStyle(
                 fontSize: minMargin * 10,
                 fontFamily: "MainFont",
               ),
             ),
-
             buttonTheme: ButtonThemeData(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)),
@@ -109,9 +96,7 @@ class Main extends StatelessWidget {
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.white70),
                   borderRadius: BorderRadius.circular(30.0)),
-            )
-        ),
-        home: Home()
-    );
+            )),
+        home: Home());
   }
 }

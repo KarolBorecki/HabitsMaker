@@ -51,7 +51,7 @@ class _SettingsState extends State<Settings> {
                   width: minMargin * 100,
                   margin: EdgeInsets.only(bottom: minMargin * 5),
                   child: RaisedButton(
-                      child: Text("Back"),
+                      child: const Text("Back"),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(PageRouteBuilder(
                             pageBuilder: (BuildContext context, _, __) {

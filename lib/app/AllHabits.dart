@@ -4,21 +4,10 @@ import '../globals.dart';
 import 'Habbit.dart';
 import 'Home.dart';
 
-class AllHabits extends StatefulWidget {
-  var weekDay;
+class AllHabits extends StatelessWidget {
+  int weekDay;
 
   AllHabits(this.weekDay);
-
-  @override
-  _AllHabitsState createState() => _AllHabitsState(weekDay);
-}
-
-class _AllHabitsState extends State<AllHabits> {
-  var weekDay;
-
-  List<Habit> habits = habitsSample;
-
-  _AllHabitsState(this.weekDay);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +16,7 @@ class _AllHabitsState extends State<AllHabits> {
       margin: EdgeInsets.all(minMargin * 5),
       child: Column(
         children: <Widget>[
-          Expanded(child: Text("")),
+          Expanded(child: const Text("")),
           Container(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,13 +49,13 @@ class _AllHabitsState extends State<AllHabits> {
               height: minMargin * 250,
               margin: EdgeInsets.only(top: minMargin * 10),
               child: HabitsOptionsList(minMargin, weekDay)),
-          Expanded(child: Text("")),
+          Expanded(child: const Text("")),
           Container(
             height: minMargin * 25,
             width: minMargin * 100,
             margin: EdgeInsets.only(bottom: minMargin * 5),
             child: RaisedButton(
-                child: Text("Back"),
+                child: const Text("Back"),
                 onPressed: () {
                   Navigator.of(context).pushReplacement(PageRouteBuilder(
                       pageBuilder: (BuildContext context, _, __) {

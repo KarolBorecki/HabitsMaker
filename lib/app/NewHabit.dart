@@ -290,7 +290,7 @@ class _TimePickerState extends State<TimePicker> {
                         itemStyle: Theme.of(context).textTheme.body2,
                         cancelStyle: TextStyle(color: Colors.red)));
               },
-              child: Text(
+              child: const Text(
                 'Change',
                 style: TextStyle(color: Colors.blue),
               )),
