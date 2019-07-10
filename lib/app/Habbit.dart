@@ -55,42 +55,19 @@ class User {
       //Decrease length by 2 because I have lastSaving value at the end of the file
       for (int i = 0; i < content.length - 2; i += 7) {
         List<String> sList =
-        content[i + 6].substring(1, content[i + 6].length - 1).split(', ');
+            content[i + 6].substring(1, content[i + 6].length - 1).split(', ');
         habits.add(new Habit(
-            content[i],
-            DateTime.parse(content[i + 1]),
-            int.parse(content[i + 2]),
-            content[i + 3] == 'true',
-            Color(int.parse(content[i + 4])),
-            content[i + 5].toString(),
-            List < int
-            >
-            .
-            generate
-            (
-            sList
-            .
-            length, (i) => int.parse(sList[i])),
+          content[i],
+          DateTime.parse(content[i + 1]),
+          int.parse(content[i + 2]),
+          content[i + 3] == 'true',
+          Color(int.parse(content[i + 4])),
+          content[i + 5].toString(),
+          List<int>.generate(sList.length, (i) => int.parse(sList[i])),
         ));
-    }
-    lastSaving
-    =
-    DateTime
-        .
-    parse
-    (
-    content
-    [
-    content
-        .
-    length
-    -
-    1
-    ]
-    );
-    checkIsDone
-    (
-    );
+      }
+      lastSaving = DateTime.parse(content[content.length - 1]);
+      checkIsDone();
     }
   }
 
@@ -338,7 +315,7 @@ class HabitListElement extends StatelessWidget {
                 color: habit.color.withOpacity(0.8)),
             child: IconButton(
               icon:
-              Text(habit.icon, style: TextStyle(fontSize: minMargin * 15)),
+                  Text(habit.icon, style: TextStyle(fontSize: minMargin * 15)),
               color: habit.color.withOpacity(0.6),
               iconSize: minMargin * 40,
               onPressed: () {},

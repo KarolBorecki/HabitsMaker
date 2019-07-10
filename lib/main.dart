@@ -29,8 +29,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     setState(() {
-      if (state == AppLifecycleState.paused || user.habits.length > 0) user
-          .saveHabits();
+      if (state == AppLifecycleState.paused || user.habits.length > 0)
+        user.saveHabits();
     });
   }
 
@@ -43,10 +43,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    minMargin = MediaQuery
-        .of(context)
-        .size
-        .width / 200;
+    minMargin = MediaQuery.of(context).size.width / 200;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         //TODO If I didint deleted ^^this^^ then change theme (use minMargin)

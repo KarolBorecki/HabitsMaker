@@ -69,10 +69,7 @@ class _NewHabitState extends State<NewHabit> {
                           child: TextFormField(
                             decoration:
                                 InputDecoration(labelText: "Habit name"),
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .body2,
+                            style: Theme.of(context).textTheme.body2,
                             textCapitalization: TextCapitalization.sentences,
                             initialValue: this.name,
                             onSaved: (String val) => this.name = val,
