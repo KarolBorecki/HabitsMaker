@@ -73,6 +73,7 @@ class _NewHabitState extends State<NewHabit> {
                                 .of(context)
                                 .textTheme
                                 .body2,
+                            textCapitalization: TextCapitalization.sentences,
                             initialValue: this.name,
                             onSaved: (String val) => this.name = val,
                           ),
@@ -256,8 +257,7 @@ class TimePicker extends StatefulWidget {
   TimePicker(this.time, this.onTimeChange);
 
   @override
-  _TimePickerState createState() =>
-      _TimePickerState(time, onTimeChange);
+  _TimePickerState createState() => _TimePickerState(time, onTimeChange);
 }
 
 class _TimePickerState extends State<TimePicker> {
