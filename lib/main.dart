@@ -29,7 +29,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     setState(() {
-      if (state == AppLifecycleState.paused) user.saveHabits();
+      if (state == AppLifecycleState.paused || user.habits.length > 0) user
+          .saveHabits();
     });
   }
 

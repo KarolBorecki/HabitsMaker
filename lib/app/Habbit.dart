@@ -45,21 +45,30 @@ class User {
   void loadHabits() async {
     habits.clear();
     final file = await _saveFile;
-    String contents = file.readAsStringSync();
-    List<String> content = contents.split('\n');
+    if (file.existsSync()) {
+      String contents = file.readAsStringSync();
+      List<String> content = contents.split('\n');
 
-    for (int i = 0; i < content.length - 1; i += 7) {
-      List<String> sList =
-          content[i + 6].substring(1, content[i + 6].length - 1).split(', ');
-      habits.add(new Habit(
-        content[i],
-        DateTime.parse(content[i + 1]),
-        int.parse(content[i + 2]),
-        content[i + 3] == 'true',
-        Color(int.parse(content[i + 4])),
-        content[i + 5].toString(),
-        List<int>.generate(sList.length, (i) => int.parse(sList[i])),
-      ));
+      for (int i = 0; i < content.length - 1; i += 7) {
+        List<String> sList =
+        content[i + 6].substring(1, content[i + 6].length - 1).split(', ');
+        habits.add(new Habit(
+            content[i],
+            DateTime.parse(content[i + 1]),
+            int.parse(content[i + 2]),
+            content[i + 3] == 'true',
+            Color(int.parse(content[i + 4])),
+            content[i + 5].toString(),
+            List < int
+            >
+            .
+            generate
+            (
+            sList
+            .
+            length, (i) => int.parse(sList[i])),
+        ));
+  }
     }
   }
 
@@ -193,8 +202,7 @@ class HabitsOptionsList extends StatefulWidget {
   HabitsOptionsList(this.weekDay);
 
   @override
-  _HabitsOptionsListState createState() =>
-      _HabitsOptionsListState(weekDay);
+  _HabitsOptionsListState createState() => _HabitsOptionsListState(weekDay);
 }
 
 class _HabitsOptionsListState extends State<HabitsOptionsList> {
