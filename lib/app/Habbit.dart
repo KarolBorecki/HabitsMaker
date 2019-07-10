@@ -26,8 +26,8 @@ class User {
     saveFile.writeAsString('');
     for (int i = 0; i < this.habits.length; i++)
       saveHabit(this.habits[i], file: saveFile);
-    saveFile.writeAsStringSync(
-        DateTime.now().toString(), mode: FileMode.append);
+    saveFile.writeAsStringSync(DateTime.now().toString(),
+        mode: FileMode.append);
   }
 
   void saveHabit(Habit habit, {File file}) async {
@@ -88,7 +88,17 @@ class User {
     1
     ]
     );
+    checkIsDone
+    (
+    );
     }
+  }
+
+  void checkIsDone() {
+    if (time.day > lastSaving.day)
+      for (int i = 0; i < habits.length; i++) {
+        habits[i].isDone = true;
+      }
   }
 
   Future<String> get _localPath async {
