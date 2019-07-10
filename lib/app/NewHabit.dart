@@ -69,6 +69,10 @@ class _NewHabitState extends State<NewHabit> {
                           child: TextFormField(
                             decoration:
                                 InputDecoration(labelText: "Habit name"),
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .body2,
                             initialValue: this.name,
                             onSaved: (String val) => this.name = val,
                           ),
@@ -78,7 +82,7 @@ class _NewHabitState extends State<NewHabit> {
                           child: TextFormField(
                             initialValue: this.icon,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: minMargin * 20),
+                            style: TextStyle(fontSize: minMargin * 21),
                             onSaved: (String val) => this.icon = val,
                             decoration: InputDecoration(
                               contentPadding:
@@ -93,7 +97,7 @@ class _NewHabitState extends State<NewHabit> {
                       ],
                     ),
                   ),
-                  TimePicker(minMargin, time, (time) {
+                  TimePicker(time, (time) {
                     this.time = time;
                   }),
                   //TODO JESUS WTF IS THIS?!
@@ -245,30 +249,28 @@ class _CheckBoxState extends State<CheckBox> {
 }
 
 class TimePicker extends StatefulWidget {
-  var _minMargin;
   var time;
 
   Function(DateTime time) onTimeChange;
 
-  TimePicker(this._minMargin, this.time, this.onTimeChange);
+  TimePicker(this.time, this.onTimeChange);
 
   @override
   _TimePickerState createState() =>
-      _TimePickerState(_minMargin, time, onTimeChange);
+      _TimePickerState(time, onTimeChange);
 }
 
 class _TimePickerState extends State<TimePicker> {
-  var _minMargin;
   var time;
 
   Function(DateTime time) onTimeChange;
 
-  _TimePickerState(this._minMargin, this.time, this.onTimeChange);
+  _TimePickerState(this.time, this.onTimeChange);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(_minMargin * 5),
+      margin: EdgeInsets.all(minMargin * 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
