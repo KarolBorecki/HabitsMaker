@@ -7,18 +7,44 @@ import 'globals.dart';
 
 void main() => runApp(App());
 
-// TODO I would delete this
-class App extends StatelessWidget {
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    user.loadHabits();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      if (state == AppLifecycleState.paused)
+        user.saveHabits();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    user.loadHabits();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Main()
     );
   }
-
 }
+
 
 class Main extends StatelessWidget {
   @override

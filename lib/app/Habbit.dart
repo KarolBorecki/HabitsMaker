@@ -45,6 +45,7 @@ class User {
 
   void loadHabits() async {
     habits.clear();
+    print(habits);
     final file = await _saveFile;
     String contents = file.readAsStringSync();
     List<String> content = contents.split('\n');
