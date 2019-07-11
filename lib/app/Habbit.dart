@@ -74,7 +74,7 @@ class User {
   void checkIsDone() {
     if (time.day > lastSaving.day)
       for (int i = 0; i < habits.length; i++) {
-        habits[i].isDone = true;
+        habits[i].isDone = false;
       }
   }
 
