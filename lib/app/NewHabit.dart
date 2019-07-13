@@ -27,7 +27,7 @@ class NewHabit extends StatefulWidget {
       bool goHome})
       : this.time = time ?? DateTime.now(),
         this.weekDaysOfHabit = weekDaysOfHabit ?? [],
-        this.color = color ?? appColors[Random().nextInt(appColorsLen)],
+        this.color = color ?? appColors[Random().nextInt(appColors.length-1)],
         this.goingHome = goHome ?? true;
 
   @override

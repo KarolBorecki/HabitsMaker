@@ -7,8 +7,6 @@ int notificationID = 0;
 double minMargin = 1.0;
 User user = User();
 
-int appColorsLen = weekDays.length;
-
 List<Color> appColors = [
   Color.fromRGBO(255, 51, 0, 1.0),
   Color.fromRGBO(255, 153, 0, 1.0),
