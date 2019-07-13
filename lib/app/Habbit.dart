@@ -144,7 +144,7 @@ class Habit {
 }
 
 class HabitsList extends StatefulWidget {
-  int weekDay;
+  final int weekDay;
 
   HabitsList(this.weekDay);
 
@@ -241,7 +241,7 @@ class _HabitsListState extends State<HabitsList> {
 }
 
 class HabitsOptionsList extends StatefulWidget {
-  var weekDay;
+  final int weekDay;
 
   HabitsOptionsList(this.weekDay);
 
@@ -334,7 +334,7 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
 }
 
 class HabitListElement extends StatelessWidget {
-  Habit habit;
+  final Habit habit;
 
   HabitListElement(this.habit);
 

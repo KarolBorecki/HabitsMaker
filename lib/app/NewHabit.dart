@@ -10,13 +10,13 @@ import '../globals.dart';
 import 'Home.dart';
 
 class NewHabit extends StatefulWidget {
-  String name;
-  String icon;
-  DateTime time;
-  List<int> weekDaysOfHabit;
-  Color color;
+  final String name;
+  final String icon;
+  final DateTime time;
+  final List<int> weekDaysOfHabit;
+  final Color color;
 
-  bool goingHome;
+  final bool goingHome;
 
   NewHabit(
       {this.name = "",
@@ -186,13 +186,13 @@ class _NewHabitState extends State<NewHabit> {
 }
 
 class CheckBox extends StatefulWidget {
-  bool isChecked;
+  final bool isChecked;
 
-  Widget child;
-  double width;
-  int value;
+  final Widget child;
+  final double width;
+  final int value;
 
-  Function(int val) onCheck;
+  final Function(int val) onCheck;
 
   CheckBox(this.width, this.value, this.child, this.isChecked, this.onCheck);
 
@@ -235,9 +235,9 @@ class _CheckBoxState extends State<CheckBox> {
 }
 
 class TimePicker extends StatefulWidget {
-  DateTime time;
+  final DateTime time;
 
-  Function(DateTime time) onTimeChange;
+  final Function(DateTime time) onTimeChange;
 
   TimePicker(this.time, this.onTimeChange);
 

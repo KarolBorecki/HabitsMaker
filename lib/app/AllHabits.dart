@@ -5,7 +5,7 @@ import 'Habbit.dart';
 import 'Home.dart';
 
 class AllHabits extends StatelessWidget {
-  int weekDay;
+  final int weekDay;
 
   AllHabits({int weekDay}) : this.weekDay = weekDay ?? DateTime.now().weekday;
 

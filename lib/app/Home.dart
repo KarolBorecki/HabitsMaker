@@ -8,7 +8,7 @@ import 'NewHabit.dart';
 import 'Settings.dart';
 
 class Home extends StatefulWidget {
-  int weekDay;
+  final int weekDay;
 
   Home({weekDay}) : this.weekDay = weekDay ?? DateTime.now().weekday;
 
