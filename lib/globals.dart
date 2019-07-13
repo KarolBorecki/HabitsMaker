@@ -41,31 +41,11 @@ List<String> weekDays = [
   "Sunday"
 ];
 
-//var habitsSample = [
-//  Habit("Running", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], "🏃🏼‍♂️", [6, 7]),
-//  Habit("Medicines", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], "💊️", [3, 5]),
-//  Habit("Yoga", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], "️ 🤸🏻‍♂️", [4, 5, 7, 1]),
-//  Habit("Lessons", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], "️ 👨🏻‍🏫", [2]),
-//  Habit("Writing", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], "✍🏻", [4]),
-//  Habit("Gym", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🏋🏻‍♀️️", [3, 5, 2]),
-//  Habit("Swimming", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🏊🏻‍♀️", [3]),
-//  Habit("Biking", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🚴🏻‍♂️", [5, 4]),
-//  Habit("Cinema", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🎬", [7]),
-//  Habit("Drums", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🥁️", [1]),
-//  Habit("Guitar", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🎸", [2, 6]),
-//  Habit("Work", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🚜", [6]),
-//  Habit("Meditation", DateTime(1, 1, 1, Random().nextInt(23)), 0, false,
-//      appColors[Random().nextInt(appColorsLen)], " 🧘🏻‍♂️️", [4, 7, 2]),
-//];
+List<String> cheeringUpTexts = [
+  "Come on you can do it!",
+  "Get some streak on this one!"
+  "Come on lazy one!",
+  "Don't waste your time - keep doing habits!",
+  "Don't let it go!",
+  "It won't take long! Just do it!"
+];

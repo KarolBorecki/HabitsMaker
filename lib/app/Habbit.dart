@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -22,10 +23,9 @@ class User {
   void addHabit(name, habitTime, color, icon, weekDays) async {
     habits.add(Habit(name, habitTime, 0, false, color, icon, weekDays));
 
-    for (int i = 0; i < weekDays.length; i++) {
-      //TODO Probably I'll change description to some random shot from globals.dart
-      _showWeeklyAtDayAndTime(weekDays[i], habitTime, name, name);
-    }
+    for (int i = 0; i < weekDays.length; i++)
+      _showWeeklyAtDayAndTime(weekDays[i], habitTime, name, cheeringUpTexts[Random().nextInt(cheeringUpTexts.length-1)]);
+
     List<PendingNotificationRequest> pending =
         await flutterLocalNotificationsPlugin.pendingNotificationRequests();
     for (int i = 0; i < pending.length; i++) {
