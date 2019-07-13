@@ -146,27 +146,7 @@ class _NewHabitState extends State<NewHabit> {
                         "Delete habit",
                         style: TextStyle(color: Colors.red),
                       ),
-                      onPressed: () {
-                        goHome();
-//                        showDemoDialog(
-//                          context: context,
-//                          child: CupertinoAlertDialog(
-//                            title: const Text(
-//                                'Are you sure you want to delete habit?'),
-//                            actions: <Widget>[
-//                              CupertinoDialogAction(
-//                                child: const Text("Stop"),
-//                                onPressed: () => Navigator.pop(context)
-//                                ,
-//                              ),
-//                              CupertinoDialogAction(
-//                                child: const Text('Delete', style: TextStyle(color:Colors.red)),
-//                                onPressed: () => Navigator.pop(context),
-//                              ),
-//                            ],
-//                          ),
-//                        );
-                      },
+                      onPressed: () => goHome(),
                     ),
                   ),
                 ],
