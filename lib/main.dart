@@ -2,13 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:habits_maker/app/Habbit.dart';
 
 import 'app/Home.dart';
 import 'globals.dart';
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
 
 void main() => runApp(App());
 
@@ -18,7 +16,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-
   @override
   void initState() {
     super.initState();

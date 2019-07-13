@@ -359,10 +359,10 @@ class HabitListElement extends StatelessWidget {
               onPressed: () {},
             ),
           ),
-
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(left: minMargin*5, right: minMargin*5),
+              margin:
+                  EdgeInsets.only(left: minMargin * 5, right: minMargin * 5),
               child: Text(
                 habit.name,
                 style: Theme.of(context).textTheme.body2,
