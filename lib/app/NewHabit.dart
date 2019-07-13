@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:habits_maker/app/AllHabits.dart';
 import 'package:intl/intl.dart';
 
 import '../globals.dart';
@@ -15,17 +16,25 @@ class NewHabit extends StatefulWidget {
   List<int> weekDaysOfHabit;
   Color color;
 
-  NewHabit({this.name = "", this.icon = "👌🏼", time, weekDaysOfHabit, color})
+  bool goingHome;
+
+  NewHabit(
+      {this.name = "",
+      this.icon = "👌🏼",
+      DateTime time,
+      List<int> weekDaysOfHabit,
+      Color color,
+      bool goHome})
       : this.time = time ?? DateTime.now(),
         this.weekDaysOfHabit = weekDaysOfHabit ?? [],
-        this.color = color ?? appColors[Random().nextInt(appColorsLen)];
+        this.color = color ?? appColors[Random().nextInt(appColorsLen)],
+        this.goingHome = goHome ?? true;
 
   @override
   _NewHabitState createState() =>
       _NewHabitState(name, icon, time, weekDaysOfHabit, color);
 }
 
-//TODO change list of weeekdays from dynamic to static like: List<int>
 class _NewHabitState extends State<NewHabit> {
   final _formKey = new GlobalKey<FormState>();
 
@@ -98,7 +107,6 @@ class _NewHabitState extends State<NewHabit> {
                   TimePicker(time, (time) {
                     this.time = time;
                   }),
-                  //TODO JESUS WTF IS THIS?!
                   Container(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,10 +187,10 @@ class _NewHabitState extends State<NewHabit> {
     goHome();
   }
 
-  void goHome() {
+  void goHome({bool goingHome = true}) {
     Navigator.of(context).pushReplacement(
         PageRouteBuilder(pageBuilder: (BuildContext context, _, __) {
-      return Home();
+      return goingHome ? Home() : AllHabits();
     }));
   }
 
