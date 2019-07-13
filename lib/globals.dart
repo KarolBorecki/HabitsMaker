@@ -2,12 +2,14 @@ import 'dart:ui';
 
 import 'app/Habbit.dart';
 
-var minMargin = 1.0;
+int notificationID = 0;
+
+double minMargin = 1.0;
 User user = User();
 
-var appColorsLen = weekDays.length;
+int appColorsLen = weekDays.length;
 
-var appColors = [
+List<Color> appColors = [
   Color.fromRGBO(255, 51, 0, 1.0),
   Color.fromRGBO(255, 153, 0, 1.0),
   Color.fromRGBO(255, 0, 102, 1.0),
@@ -29,7 +31,7 @@ var appColors = [
   Color.fromRGBO(240, 18, 190, 1.0),
 ];
 
-var weekDays = [
+List<String> weekDays = [
   "Monday",
   "Tuesday",
   "Wedensday",

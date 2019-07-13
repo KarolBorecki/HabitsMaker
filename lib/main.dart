@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:habits_maker/app/Habbit.dart';
 
 import 'app/Home.dart';
 import 'globals.dart';
+
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
 
 void main() => runApp(App());
 
@@ -13,11 +18,29 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     user.loadHabits();
+
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    var android = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var IOS = IOSInitializationSettings();
+    var initSettings = InitializationSettings(android, IOS);
+    flutterLocalNotificationsPlugin.initialize(initSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) {
+    debugPrint("payload $payload");
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              title: const Text("Payload"),
+              content: const Text("Payload"),
+            ));
   }
 
   @override
@@ -36,6 +59,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    flutterLocalNotificationsPlugin.cancelAll();
     return MaterialApp(debugShowCheckedModeBanner: false, home: Main());
   }
 }
@@ -46,7 +70,6 @@ class Main extends StatelessWidget {
     minMargin = MediaQuery.of(context).size.width / 200;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        //TODO If I didint deleted ^^this^^ then change theme (use minMargin)
         theme: ThemeData(
             brightness: Brightness.dark,
             primaryColor: Color.fromRGBO(20, 20, 20, 1.0),

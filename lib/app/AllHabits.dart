@@ -7,7 +7,7 @@ import 'Home.dart';
 class AllHabits extends StatelessWidget {
   int weekDay;
 
-  AllHabits(this.weekDay);
+  AllHabits({int weekDay}) : this.weekDay = weekDay ?? DateTime.now().weekday;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AllHabits extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(PageRouteBuilder(
                       pageBuilder: (BuildContext context, _, __) {
-                    return AllHabits((weekDay <= 1) ? 7 : weekDay - 1);
+                    return AllHabits(weekDay: (weekDay <= 1) ? 7 : weekDay - 1);
                   }));
                 },
               ),
@@ -39,7 +39,7 @@ class AllHabits extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(PageRouteBuilder(
                       pageBuilder: (BuildContext context, _, __) {
-                    return AllHabits(weekDay % 7 + 1);
+                    return AllHabits(weekDay: weekDay % 7 + 1);
                   }));
                 },
               ),

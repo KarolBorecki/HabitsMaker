@@ -2,7 +2,9 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habits_maker/main.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -17,8 +19,18 @@ class User {
 
   User({List<Habit> habits}) : this.habits = habits ?? [];
 
-  void addHabit(name, time, color, icon, weekDays) async {
-    habits.add(Habit(name, time, 0, false, color, icon, weekDays));
+  void addHabit(name, habitTime, color, icon, weekDays) async {
+    habits.add(Habit(name, habitTime, 0, false, color, icon, weekDays));
+
+    for (int i = 0; i < weekDays.length; i++) {
+      //TODO Probably I'll change description to some random shot from globals.dart
+      _showWeeklyAtDayAndTime(weekDays[i], habitTime, name, name);
+    }
+    List<PendingNotificationRequest> pending =
+        await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    for (int i = 0; i < pending.length; i++) {
+      print(pending[i].title + " " + pending[i].id.toString());
+    }
   }
 
   void saveHabits() async {
@@ -86,7 +98,34 @@ class User {
   Future<File> get _saveFile async {
     final path = await _localPath;
     File file = File('$path/SaveFile.txt');
+    print(path);
     return file;
+  }
+
+  Future<void> _showWeeklyAtDayAndTime(
+      int day, DateTime habitTime, String title, String description) async {
+    var timeN = Time(habitTime.hour, habitTime.minute, 0);
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'show weekly channel id',
+        'show weekly channel name',
+        'show weekly description');
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    int dIndex = (day == 7) ? 1 : (day + 1);
+    await flutterLocalNotificationsPlugin.showWeeklyAtDayAndTime(notificationID,
+        title, description, Day(dIndex), timeN, platformChannelSpecifics);
+    print("Notification " +
+        title +
+        " will be shown at " +
+        Day(dIndex).value.toString() +
+        " " +
+        timeN.hour.toString() +
+        ":" +
+        timeN.minute.toString() +
+        " with ID = " +
+        notificationID.toString());
+    notificationID++;
   }
 }
 
@@ -186,8 +225,7 @@ class _HabitsListState extends State<HabitsList> {
             }).toList()));
   }
 
-  //TODO Delete this horryfing vars OMFG
-  List<dynamic> getHabits(var weekDay) {
+  List<dynamic> getHabits(int weekDay) {
     List<Habit> finalHabits = [];
     user.habits.forEach((element) {
       if (element.weekdays.contains(weekDay) && !element.isDone)
@@ -249,7 +287,6 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
                   icon: Icons.delete_forever,
                   foregroundColor: Colors.red,
                   onTap: () {
-                    // TODO add popup window - are you fcking sure???
                     setState(() {
                       user.habits.remove(habit);
                     });
@@ -269,6 +306,7 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
                         weekDaysOfHabit: habit.weekdays,
                         time: habit.time,
                         color: habit.color,
+                        goHome: false,
                       );
                     }));
                   },
@@ -281,7 +319,7 @@ class _HabitsOptionsListState extends State<HabitsOptionsList> {
     );
   }
 
-  List<dynamic> getHabits(var weekDay) {
+  List<dynamic> getHabits(int weekDay) {
     List<Habit> finalHabits = [];
     user.habits.forEach((element) {
       if (element.weekdays.contains(weekDay)) finalHabits.add(element);
@@ -321,17 +359,19 @@ class HabitListElement extends StatelessWidget {
               onPressed: () {},
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: minMargin * 5),
-            child: Text(
-              //TODO problem - too long name = overfolowed error
-              habit.name,
-              style: Theme.of(context).textTheme.body2,
+
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(left: minMargin*5, right: minMargin*5),
+              child: Text(
+                habit.name,
+                style: Theme.of(context).textTheme.body2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
-          Expanded(child: const Text("")),
           Container(
-            margin: EdgeInsets.only(right: minMargin * 5),
+            margin: EdgeInsets.only(right: minMargin * 7),
             child: Text(
               DateFormat('kk:mm').format(habit.time),
               style: Theme.of(context).textTheme.body2,

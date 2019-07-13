@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.of(context).pushReplacement(PageRouteBuilder(
                           pageBuilder: (BuildContext context, _, __) {
-                        return AllHabits(weekDay);
+                        return AllHabits();
                       }));
                     },
                   )
